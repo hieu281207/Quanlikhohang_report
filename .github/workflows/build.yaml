@@ -3,8 +3,15 @@ name: Build Thesis PDF
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  paths-ignore:
+    - '.github/**'
+    - '.devcontainer/**'
+    - '.vscode/**'
+    - 'tests/**'
+    - '**.md'
+    - 'LICENSE'
+    - 'Makefile'
+    - '.gitignore'
   workflow_dispatch: # Allows manual trigger from the GitHub Actions UI
 
 jobs:
