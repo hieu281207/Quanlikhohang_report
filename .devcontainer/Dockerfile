@@ -23,7 +23,7 @@ RUN curl -sSL https://mirrors.ctan.org/support/texfot/texfot.pl -o /usr/local/bi
 # ==========================================
 
 # Vietnamese Font and Hyphenation Options
-# RUN tlmgr install collection-langother
+RUN tlmgr install collection-langother
 
 # CJK Languages (Chinese, Japanese, Korean)
 # RUN tlmgr install collection-langcjk
