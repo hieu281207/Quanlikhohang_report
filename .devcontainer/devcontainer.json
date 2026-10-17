@@ -1,0 +1,41 @@
+{
+	"name": "LaTeX",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": [
+		"--label",
+		"keep=true"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"James-Yu.latex-workshop"
+			],
+			"settings": {
+				"latex-workshop.latex.autoBuild.run": "never",
+				"latex-workshop.latex.outDir": "%DIR%/output",
+				"latex-workshop.latex.tools": [
+					{
+						"name": "latexmk",
+						"command": "latexmk",
+						"args": [
+							"-pdf",
+							"%DOC%"
+						],
+						"env": {}
+					}
+				]
+			}
+		}
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	// Share the host SSH config, known_hosts and keys (read-only) so git over SSH behaves as on the host
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly"
+	],
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+	"containerUser": "root"
+}
